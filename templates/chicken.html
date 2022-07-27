@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chicken</title>
+</head>
+<body class="container">
+<form method="POST" action="create/">
+    {% csrf_token %}
+        <p>
+            <label>Введите вес курицы: </label><br>
+            <input type="number" name="weight">
+        </p>
+        <p>
+            <label>Введите дата роджения курицы: </label><br>
+            <input type="text" name="date">
+        </p>
+        <input type="submit" value="Сохранить">
+</form>
+    {% if chickens.count > 0 %}
+    <h2>Список куриц</h2>
+    <table>
+        <tr>
+            <th>Вес</th>
+            <th>Дата роджения</th>
+        </tr>
+        {% for i in chickens %}
+        <tr>
+            <th>{{ i.weight }}</th>
+            <th>{{ i.date }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
